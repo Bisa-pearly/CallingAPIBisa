@@ -11,8 +11,12 @@ import java.util.List;
 @Setter
 @Getter
 public class Category {
-
     private String title;
+
+    //Constructor
+    public Category() {
+
+    }
 
     public String getTitle() {
         return title;
@@ -21,12 +25,5 @@ public class Category {
     public void setTitle(String title) {
         this.title = title;
     }
-    public List<Product> getProducts() {
-        //List<Product> products = List.of();
-        return products;
-    }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }

@@ -73,10 +73,12 @@ public class FakeStoreProductDto {
     product.setDescription(this.description);
     product.setImage(this.image);
 
-    Category cat=new Category(title);
+    Category cat=new Category();
     cat.setTitle(this.category);
     product.setCategory((jdk.jfr.Category) cat);
     return product;
+
+
 
     }
 

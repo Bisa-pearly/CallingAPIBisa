@@ -4,26 +4,35 @@ import com.calling.callingapiexception.models.Product;
 import com.calling.callingapiexception.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
     /*public ProductController(ProductService productService) {
         this.productService = productService;
     }*/
-    public ProductController(@Qualifier("selfProductService") ProductService productService ) {
+    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService ) {
         this.productService = productService;
     }
 
     @PostMapping("/products")
     public Product createProduct(@RequestBody Product product) {
         System.out.println("i am start");
+        /*Product p = productService.createProduct(product.getId(),
+                product.getTitle(), product.getDescription(),
+                product.getPrice(), product.getCategory().getTitle());*/
+        Product p = productService.createProduct(
+                product.getTitle(), product.getDescription(),
+                product.getImageUrl(),
+                product.getPrice(), product.getCategory().getTitle());
 
-       // productService.createProduct(product.getId(), product.getTitle(),product.getDescription(),product.getPrice(),product.getCategory()); // created to check what wrong.
-        Product p = productService.createProduct(product.getId(),product.getTitle(),product.getDescription(),product.getPrice(),product.getCategory().getTitle());
-        System.out.println("i am end");
         return p;
+        System.out.println("i am end");
+       // return null;
 
     }
 
