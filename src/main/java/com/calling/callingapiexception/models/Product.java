@@ -1,6 +1,6 @@
 package com.calling.callingapiexception.models;
 
-import jdk.jfr.Category;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,16 +17,7 @@ public class Product {
     private Double price;
     private String imageUrl;
     private Category category;
-    /*@Override
-    public String toString() {
-        return "Product{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", category=" + category +
-                '}';
-    }*/
+
 
     public Long getId() {
         return id;
@@ -60,12 +51,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getImage() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.imageUrl = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Category getCategory() {

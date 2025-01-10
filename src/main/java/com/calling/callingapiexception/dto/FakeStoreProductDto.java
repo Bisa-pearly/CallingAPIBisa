@@ -71,11 +71,11 @@ public class FakeStoreProductDto {
     product.setTitle(this.title);
     product.setPrice(this.price);
     product.setDescription(this.description);
-    product.setImage(this.image);
+    product.setImageUrl(this.image);
 
     Category cat=new Category();
     cat.setTitle(this.category);
-    product.setCategory((jdk.jfr.Category) cat);
+    product.setCategory(cat);
     return product;
 
 

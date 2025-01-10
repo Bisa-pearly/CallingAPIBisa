@@ -4,17 +4,16 @@ import com.calling.callingapiexception.models.Product;
 import com.calling.callingapiexception.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+
+
+
 
 @RestController
 @RequestMapping
 public class ProductController {
 
     private final ProductService productService;
-    /*public ProductController(ProductService productService) {
-        this.productService = productService;
-    }*/
+
     public ProductController(@Qualifier("fakeStoreProductService") ProductService productService ) {
         this.productService = productService;
     }
@@ -22,19 +21,17 @@ public class ProductController {
     @PostMapping("/products")
     public Product createProduct(@RequestBody Product product) {
         System.out.println("i am start");
-        /*Product p = productService.createProduct(product.getId(),
-                product.getTitle(), product.getDescription(),
-                product.getPrice(), product.getCategory().getTitle());*/
-        Product p = productService.createProduct(
-                product.getTitle(), product.getDescription(),
+        Product p = productService.createProduct(product.getTitle(),
                 product.getImageUrl(),
-                product.getPrice(), product.getCategory().getTitle());
-
-        return p;
+                product.getPrice(),
+                product.getCategory().getTitle()
+                );
         System.out.println("i am end");
-       // return null;
+        return p;
+
 
     }
+
 
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable("id") Long id) {
