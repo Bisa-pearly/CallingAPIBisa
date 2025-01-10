@@ -28,10 +28,7 @@ public class ProductController {
                 );
         System.out.println("i am end");
         return p;
-
-
     }
-
 
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable("id") Long id) {
@@ -42,10 +39,25 @@ public class ProductController {
         System.out.println(p);
         return p;
     }
-    public void updateProduct(@RequestBody Product product) {
-
+    @PutMapping("/Products/{id}")
+    public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
+        System.out.println("i am start at Update");
+        Product p= productService.updateProduct(
+                id,
+                product.getTitle(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory().getTitle()
+        );
+        return p;
     }
-    public void deleteProductById(@RequestBody Product product) {
+    @DeleteMapping("/productss/{id}")
+    public Product deleteProductById(@PathVariable("id") Long id) {
+        System.out.println("i am start at Delete");
+        Product p = productService.deleteProduct(id);
+        System.out.println("i am Ending at Delete");
+        return p;
+
 
     }
 
