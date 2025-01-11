@@ -25,6 +25,7 @@ public class FakestoreProductService implements ProductService{
 
     @Override
     public List<Product> getAllProducts() {
+        System.out.println("Fetching all products");
         FakeStoreProductDto[] response = restTemplate.getForObject(
                 "https://fakestoreapi.com/products",
                 FakeStoreProductDto[].class
@@ -35,6 +36,7 @@ public class FakestoreProductService implements ProductService{
                 products.add(dto.getProducts());
             }
         }
+        System.out.println("Found " + products.size() + " products");
         return products;
     }
 
@@ -56,7 +58,7 @@ public class FakestoreProductService implements ProductService{
         );
         return null;
     }
-
+    // Update Product implementation
     @Override
     public Product updateProduct(long id, String title, String description, Double price, String category) {
         //Create DTO with updated value

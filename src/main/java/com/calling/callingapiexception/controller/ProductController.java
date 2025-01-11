@@ -6,6 +6,8 @@ import com.calling.callingapiexception.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping
@@ -16,7 +18,7 @@ public class ProductController {
     public ProductController(@Qualifier("fakeStoreProductService") ProductService productService ) {
         this.productService = productService;
     }
-
+// 1. Create API
     @PostMapping("/products")
     public Product createProduct(@RequestBody Product product) {
         System.out.println("i am start");
@@ -28,7 +30,7 @@ public class ProductController {
         System.out.println("i am end");
         return p;
     }
-
+//2. get single product APi
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable("id") Long id) {
         System.out.println("i am start at APi");
@@ -38,20 +40,7 @@ public class ProductController {
         System.out.println(p);
         return p;
     }
-/*    @PutMapping("/Productss/")
-    public Product updateProduct( @RequestBody FakeStoreProductDto fakeStoreProductDto) {
-        System.out.println("i am start at Update PC");
-        Product product=productService.updateProduct(
-                id,
-                fakeStoreProductDto.getTitle(),
-                fakeStoreProductDto.getDescription(),
-                fakeStoreProductDto.getPrice(),
-                fakeStoreProductDto.getCategory());
-
-        System.out.println("i am Ending at Update PC");
-        return product;
-    }*/
-
+//3. Update API
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
         System.out.println("start PC");
@@ -65,17 +54,23 @@ public class ProductController {
         );
 
     }
-
-  /*  @DeleteMapping("/products/{id}")
-    public Product deleteProductById(@PathVariable("id") Long id) {
+// 4. Delete API
+   @DeleteMapping("/products/{id}")
+    public String deleteProductById(@PathVariable("id") Long id) {
         System.out.println("i am start at Delete");
-        Product p = productService.deleteProduct(id);
-        System.out.println("i am Ending at Delete");
-        return p;
-    }*/
-
+        System.out.println("Deleting product with ID: " + id);  // Add logging
+        productService.deleteProduct(id);
+        return "Deleted product with ID: " + id;
+    }
     public String addProduct(Product product) {
         return "added successfully";
 
     }
+// 5. get all product
+    @GetMapping/*("/product")*/
+    public List<Product> getAllProducts() {
+        System.out.println("Getting all products");
+        return productService.getAllProducts();
+    }
+
 }
