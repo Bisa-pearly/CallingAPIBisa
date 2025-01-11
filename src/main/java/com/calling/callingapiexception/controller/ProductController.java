@@ -1,11 +1,10 @@
 package com.calling.callingapiexception.controller;
 
+import com.calling.callingapiexception.dto.FakeStoreProductDto;
 import com.calling.callingapiexception.models.Product;
 import com.calling.callingapiexception.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
-
 
 
 @RestController
@@ -39,30 +38,44 @@ public class ProductController {
         System.out.println(p);
         return p;
     }
-    @PutMapping("/Products/{id}")
+/*    @PutMapping("/Productss/")
+    public Product updateProduct( @RequestBody FakeStoreProductDto fakeStoreProductDto) {
+        System.out.println("i am start at Update PC");
+        Product product=productService.updateProduct(
+                id,
+                fakeStoreProductDto.getTitle(),
+                fakeStoreProductDto.getDescription(),
+                fakeStoreProductDto.getPrice(),
+                fakeStoreProductDto.getCategory());
+
+        System.out.println("i am Ending at Update PC");
+        return product;
+    }*/
+
+    @PutMapping("/{id}")
     public Product updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
-        System.out.println("i am start at Update");
-        Product p= productService.updateProduct(
+        System.out.println("start PC");
+        return productService.updateProduct(
                 id,
                 product.getTitle(),
                 product.getDescription(),
                 product.getPrice(),
                 product.getCategory().getTitle()
+
         );
-        return p;
+
     }
-    @DeleteMapping("/productss/{id}")
+
+  /*  @DeleteMapping("/products/{id}")
     public Product deleteProductById(@PathVariable("id") Long id) {
         System.out.println("i am start at Delete");
         Product p = productService.deleteProduct(id);
         System.out.println("i am Ending at Delete");
         return p;
-
-
-    }
+    }*/
 
     public String addProduct(Product product) {
         return "added successfully";
-    }
 
+    }
 }

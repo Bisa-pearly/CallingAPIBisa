@@ -72,7 +72,6 @@ public class FakeStoreProductDto {
     product.setPrice(this.price);
     product.setDescription(this.description);
     product.setImageUrl(this.image);
-
     Category cat=new Category();
     cat.setTitle(this.category);
     product.setCategory(cat);
